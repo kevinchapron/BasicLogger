@@ -1,24 +1,22 @@
 package main
 
 import (
-	"github.com/kevinchapron/BasicLogger"
-	"fmt"
+	"github.com/kevinchapron/BasicLogger/Logging"
 )
 
-var Logger BasicLogger.Logger;
+// Here is the hierarchy of Logging Levels :
+// 		DEBUG > INFO > WARNING > ERROR
+// 	A higher level includes every inferior levels
+//	E.G.: Debug activates Info, Warning & Error
+//	E.G.: Warning activates Error
+var Log *Logging.Logger = Logging.NewLogger(Logging.DEBUG);
 
 func main(){
-	Logger.Print(fmt.Sprintf("Enabled : %v\n",Logger.GetEnabled()),BasicLogger.INFO)
-	Logger.Print(fmt.Sprintf("Disabled : %v\n",Logger.GetDisabled()),BasicLogger.INFO)
+	Log.Print(Logging.INFO, "Current Logging Level => ", Log.LoggerLevel.String())
 
-	Logger.Print(fmt.Sprintf("Error 1\n"),BasicLogger.ERROR)
-	Logger.Disable(BasicLogger.ERROR)
-	Logger.Print(fmt.Sprintf("Error 2\n"),BasicLogger.ERROR)
-	Logger.Enable(BasicLogger.ERROR)
-	Logger.Print(fmt.Sprintf("Error 3\n"),BasicLogger.ERROR)
+	Log.SetLevel(Logging.ERROR)
+	Log.Print(Logging.DEBUG, "I'm a debug info which won't be displayed because Logging Level has been set to \"Error\".")
 
-	Logger.Disable(BasicLogger.DEBUG)
-
-	Logger.Print(fmt.Sprintf("Enabled : %v\n",Logger.GetEnabled()),BasicLogger.INFO)
-	Logger.Print(fmt.Sprintf("Disabled : %v\n",Logger.GetDisabled()),BasicLogger.INFO)
+	Log.SetLevel(Logging.DEBUG)
+	Log.Print(Logging.DEBUG, "I'm a debug info which will be displayed !")
 }
