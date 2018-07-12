@@ -12,8 +12,8 @@ func (l LoggerType) String() string{
 	return _Logger_Type_String[int(l)]
 }
 
-const INFO LoggerType = 0
-const ERROR LoggerType = 1
+const ERROR LoggerType = 0
+const INFO LoggerType = 1
 const WARNING LoggerType = 2
 const DEBUG LoggerType = 3
 
