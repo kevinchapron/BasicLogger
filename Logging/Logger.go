@@ -23,11 +23,13 @@ type Logger struct {
 	LoggerLevel LoggerType
 }
 
-func NewLogger(Type LoggerType) *Logger{
+func GetLogger(Type LoggerType) *Logger{
 	if _Logger_Instance == nil {
 		_Logger_Instance = &Logger{
 			LoggerLevel:Type,
 		}
+	}else{
+		_Logger_Instance.LogerLevel = Type
 	}
 	return _Logger_Instance
 }
