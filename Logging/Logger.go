@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var _Logger_Type_String = []string{"ERROR","WARNING","INFO","DEBUG"}
+var _Logger_Type_String = []string{"ERROR","INFO","WARNING","DEBUG"}
 
 type LoggerType int
 func (l LoggerType) String() string{
