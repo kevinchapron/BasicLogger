@@ -9,13 +9,6 @@ This project is a **GoLang application**.
 It is a basic Logger with different types.
 Take a look at ```cmd/app.go``` for a simple example.
 
-```
-const ERROR     LoggerType = 1
-const WARNING   LoggerType = 2
-const INFO      LoggerType = 3
-const DEBUG     LoggerType = 4
-```
-
 
 Author
 ---
