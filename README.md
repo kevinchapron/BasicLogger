@@ -6,7 +6,8 @@
 ---
 
 This project is a **GoLang application**.
-It is a basic Logger with different modes. Each Printing has a mod, that can be disabled or enabled.
+It is a basic Logger with different types.
+Take a look at ```cmd/app.go``` for a simple example.
 
 ```
 const ERROR     LoggerType = 1
