@@ -39,14 +39,14 @@ func SetLevel(Type LoggerType) {
 	CurrentLevel = Type
 }
 func Error(val ...interface{}) {
-	print(ERROR, val)
+	print(ERROR, val...)
 }
 func Warning(val ...interface{}) {
-	print(WARNING, val)
+	print(WARNING, val...)
 }
 func Info(val ...interface{}) {
-	print(INFO, val)
+	print(INFO, val...)
 }
 func Debug(val ...interface{}) {
-	print(DEBUG, val)
+	print(DEBUG, val...)
 }
