@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/kevinchapron/BasicLogger/Logging"
+	Log "github.com/kevinchapron/BasicLogger/Logging"
 )
 
 // Here is the hierarchy of Logging Levels :
@@ -9,14 +9,14 @@ import (
 // 	A higher level includes every inferior levels
 //	E.G.: Debug activates Info, Warning & Error
 //	E.G.: Warning activates Error
-var Log *Logging.Logger = Logging.NewLogger(Logging.DEBUG);
 
-func main(){
-	Log.Print(Logging.INFO, "Current Logging Level => ", Log.LoggerLevel.String())
+func main() {
 
-	Log.SetLevel(Logging.ERROR)
-	Log.Print(Logging.DEBUG, "I'm a debug info which won't be displayed because Logging Level has been set to \"Error\".")
+	Log.Info("Current Logging Level => ", Log.CurrentLevel)
 
-	Log.SetLevel(Logging.DEBUG)
-	Log.Print(Logging.DEBUG, "I'm a debug info which will be displayed !")
+	Log.SetLevel(Log.ERROR)
+	Log.Debug("I'm a debug info which won't be displayed because Logging Level has been set to \"Error\".")
+
+	Log.SetLevel(Log.DEBUG)
+	Log.Debug("I'm a debug info which will be displayed !")
 }
