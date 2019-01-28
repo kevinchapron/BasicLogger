@@ -2,8 +2,11 @@ package Logging
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
+
+var mutex_logger sync.Mutex
 
 var _Logger_Type_String = []string{"ERROR", "INFO", "WARNING", "DEBUG"}
 
@@ -20,24 +23,39 @@ const DEBUG LoggerType = 3
 
 var CurrentLevel LoggerType = 0
 
+var MutexEnabled = true
+
 type Logger struct {
 	LoggerLevel LoggerType
 }
 
 func print(Type LoggerType, val ...interface{}) {
 	if Type <= CurrentLevel {
+		if MutexEnabled {
+			mutex_logger.Lock()
+		} else {
+			mutex_logger.Unlock()
+		}
 		t := time.Now()
 		var str string
 		for _, elt := range val {
 			str += fmt.Sprintf("%v ", elt)
 		}
 		fmt.Printf("[%s] (%s) %s\n", t.Format("2006-01-02 15:04:05.999999"), Type.String(), str)
+		if MutexEnabled {
+			mutex_logger.Unlock()
+		}
 	}
+}
+
+func DisableMutex() {
+	MutexEnabled = false
 }
 
 func SetLevel(Type LoggerType) {
 	CurrentLevel = Type
 }
+
 func Error(val ...interface{}) {
 	print(ERROR, val...)
 }
